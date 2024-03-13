@@ -20,28 +20,40 @@ public class PlayerMove : MonoBehaviour
     }
     void Update()
     {
-        transform.Translate(moveSpeed * Time.deltaTime * Vector3.forward);
-
+        // Calculate movement direction based on input
+        Vector3 movement = Vector3.zero;
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
+            movement += Vector3.forward;
+        }
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        {
+            movement += Vector3.back;
+        }
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            if (gameObject.transform.position.x > LevelBoundary.leftBoundary)
-            {
-                transform.Translate(moveSpeed * Time.deltaTime * Vector3.left);
-            }
+            movement += Vector3.left;
         }
-
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            if (gameObject.transform.position.x < LevelBoundary.rightBoundary)
-            {
-                transform.Translate(moveSpeed * Time.deltaTime * -1f * Vector3.left);
-            }
+            movement += Vector3.right;
         }
+
+        // Normalize the movement vector to ensure consistent speed diagonally
+        movement.Normalize();
+
+        // Adjust movement speed if Shift key is pressed
+        float currentMoveSpeed = Input.GetKey(KeyCode.LeftShift) ? moveSpeed * 0.5f : moveSpeed;
+
+        // Translate the player's position based on movement direction and speed
+        transform.Translate(currentMoveSpeed * Time.deltaTime * movement);
+
+        // Update animator parameters or other logic as needed
     }
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.Space))
         {
             if (gameObject.transform.position.y <= 1.26 && jumpCooldownFinished)
             {
