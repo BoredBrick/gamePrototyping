@@ -48,7 +48,14 @@ public class PlayerMove : MonoBehaviour
         // Translate the player's position based on movement direction and speed
         transform.Translate(currentMoveSpeed * Time.deltaTime * movement);
 
-        // Update animator parameters or other logic as needed
+        if (gameObject.transform.position.x > LevelBoundary.rightBoundary)
+        {
+            transform.position = new Vector3(LevelBoundary.rightBoundary, transform.position.y, transform.position.z);
+        }
+        else if (gameObject.transform.position.x < LevelBoundary.leftBoundary)
+        {
+            transform.position = new Vector3(LevelBoundary.leftBoundary, transform.position.y, transform.position.z);
+        }
     }
 
     private void FixedUpdate()
