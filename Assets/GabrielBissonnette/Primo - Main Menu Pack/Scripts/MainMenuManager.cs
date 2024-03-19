@@ -92,12 +92,10 @@ public class MainMenuManager : MonoBehaviour
     Resolution[] resolutions;
 
     #endregion
-    public static XMLHighScoreManager instance;
 
 
     void Start()
     {
-        instance = ScriptableObject.CreateInstance<XMLHighScoreManager>();
         SetStartUI();
         ProcessLinks();
         SetStartVolume();
@@ -240,7 +238,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void Quit()
     {
-        instance.SaveScores();
 #if UNITY_STANDALONE
         Application.Quit();
 #endif

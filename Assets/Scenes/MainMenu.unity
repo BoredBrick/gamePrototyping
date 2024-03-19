@@ -425,7 +425,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: c1ce8ee7221e6fb41950e59a2c4054fd, type: 3}
     - target: {fileID: 5263712739811740252, guid: 68ebc2fc820d6b4468022ceeb9e29bc5, type: 3}
       propertyPath: sceneToLoad
-      value: InfinityRunner
+      value: Game
       objectReference: {fileID: 0}
     - target: {fileID: 5263712739811740252, guid: 68ebc2fc820d6b4468022ceeb9e29bc5, type: 3}
       propertyPath: showSocial1
