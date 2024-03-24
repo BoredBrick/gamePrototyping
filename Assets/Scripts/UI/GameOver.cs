@@ -19,7 +19,6 @@ public class GameOver : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene("Game");
-        Points.score = 0;
         Time.timeScale = 1;
     }
 

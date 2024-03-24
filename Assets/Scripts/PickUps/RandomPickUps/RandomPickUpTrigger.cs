@@ -11,7 +11,7 @@ public class RandomPickUpTrigger : MonoBehaviour
             audioSource = GameObject.FindGameObjectWithTag("Scripts").GetComponent<AudioSource>();
             audioSource.PlayOneShot(pickUpSound);
             GameObject.FindGameObjectWithTag("Scripts").GetComponent<RandomPickUps>().TriggerEffect();
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }
