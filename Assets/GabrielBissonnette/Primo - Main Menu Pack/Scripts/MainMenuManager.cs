@@ -137,7 +137,7 @@ public class MainMenuManager : MonoBehaviour
         {
             secondaryColorImages[i].color = secondaryColor;
         }
-
+        
         // Secondary Color Texts
         for (int i = 0; i < secondaryColorTexts.Length; i++)
         {

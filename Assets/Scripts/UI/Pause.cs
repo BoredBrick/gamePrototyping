@@ -7,7 +7,7 @@ public class Pause : MonoBehaviour
     private void Update()
     {
 
-        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) && Countdown.isPlaying)
+        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)))
         {
             if (pauseScreen.activeSelf)
             {

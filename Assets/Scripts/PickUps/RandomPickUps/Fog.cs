@@ -6,7 +6,7 @@ public class Fog : BasePickUp
     public static readonly float defaultFogDensity = 0.012f;
     public static readonly float effectFogDensity = 0.090f;
     public override string PickUpName { get => "FOG"; }
-
+    public override bool IsPositive { get => false; }
     public override void StartEffect()
     {
         StartCoroutine(FogFade());

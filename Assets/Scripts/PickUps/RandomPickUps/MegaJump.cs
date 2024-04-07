@@ -5,7 +5,7 @@ using UnityEngine;
 public class MegaJump : BasePickUp
 {
     public override string PickUpName { get => "MEGA JUMP"; }
-
+    public override bool IsPositive { get => true; }
     public override void StartEffect()
     {
         StartCoroutine(JumpChange());

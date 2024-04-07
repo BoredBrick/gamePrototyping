@@ -1,24 +1,91 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public enum TypeOfPickUp
+{
+    Positive,
+    Negative,
+    Mixed
+}
+
 public class RandomPickUps : MonoBehaviour
 {
     public List<BasePickUp> pickUps;
-    public List<string> activePickUps;
+    public List<string> activePickUps = new();
     public GameObject display;
     public GameObject foreground;
     public GameObject label;
     private List<GameObject> labels = new();
 
-
     public void TriggerEffect()
     {
-        BasePickUp chosenEffect = pickUps[Random.Range(0, pickUps.Count)];
+        BasePickUp chosenEffect = GetRandomPickUp();
+        Debug.Log(chosenEffect.PickUpName);
         chosenEffect.StartEffect();
         activePickUps.Add(chosenEffect.PickUpName);
         StartCoroutine(LabelLife());
+    }
+
+    private BasePickUp GetRandomPickUp()
+    {
+        return pickUps[UnityEngine.Random.Range(0, pickUps.Count)];
+    }
+
+    public List<BasePickUp> GetPickUps(TypeOfPickUp typeOfPickUp)
+    {
+        List<BasePickUp> filteredPickUps = new();
+
+        foreach (BasePickUp pickup in pickUps)
+        {
+            switch (typeOfPickUp)
+            {
+                case TypeOfPickUp.Positive:
+                    if (pickup.IsPositive)
+                        filteredPickUps.Add(pickup);
+                    break;
+                case TypeOfPickUp.Negative:
+                    if (!pickup.IsPositive)
+                        filteredPickUps.Add(pickup);
+                    break;
+                case TypeOfPickUp.Mixed:
+                    return pickUps; 
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(typeOfPickUp), typeOfPickUp, null);
+            }
+        }
+
+        return filteredPickUps;
+    }
+
+    public void TriggerPickUp(TypeOfPickUp typeOfPickUp)
+    {
+        List<BasePickUp> pickedPickUps = GetPickUps(typeOfPickUp);
+
+        if (pickedPickUps.Count > 0)
+        {
+            BasePickUp chosenEffect;
+
+            if (typeOfPickUp == TypeOfPickUp.Mixed)
+                chosenEffect = GetRandomPickUp();
+            else
+                chosenEffect = pickedPickUps[UnityEngine.Random.Range(0, pickedPickUps.Count)];
+
+            Debug.Log(chosenEffect.PickUpName);
+            chosenEffect.StartEffect();
+            activePickUps.Add(chosenEffect.PickUpName);
+            StartCoroutine(LabelLife());
+        }
+    }
+
+    private IEnumerator LabelLife()
+    {
+        RefreshDisplay();
+        yield return new WaitForSecondsRealtime(10f);
+        activePickUps.RemoveAt(0);
+        RefreshDisplay();
     }
 
     private void RefreshDisplay()
@@ -50,14 +117,4 @@ public class RandomPickUps : MonoBehaviour
             count++;
         }
     }
-
-    IEnumerator LabelLife()
-    {
-        RefreshDisplay();
-        yield return new WaitForSecondsRealtime(10f);
-        activePickUps.RemoveAt(0);
-        RefreshDisplay();
-        yield return null;
-    }
-
 }

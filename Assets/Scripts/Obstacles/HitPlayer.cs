@@ -8,7 +8,7 @@ public class HitPlayer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerLives.lives--;
+            PlayerLives.RemoveLife();
         }
     }
 }

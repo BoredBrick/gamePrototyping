@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class ChangeSpeed : BasePickUp
 {
-    public int speed;
+    private readonly int slowSpeed = 2;
+    private readonly int fastSpeed = 10;
+
+    public bool MakeFaster;
 
     public override string PickUpName { get => SetName(); }
+
+    public override bool IsPositive { get => MakeFaster; }
 
     public override void StartEffect()
     {
@@ -15,12 +20,12 @@ public class ChangeSpeed : BasePickUp
 
     private string SetName()
     {
-        return (speed == 12) ? "FASTER RUNNING" : "SLOWER RUNNING";
+        return (MakeFaster) ? "FASTER RUNNING" : "SLOWER RUNNING";
     }
 
     IEnumerator SpeedChange()
     {
-        PlayerMove.moveSpeed = speed;
+        PlayerMove.moveSpeed = MakeFaster ? fastSpeed : slowSpeed;
         yield return new WaitForSecondsRealtime(10f);
         PlayerMove.moveSpeed = Constants.defaultMoveSpeed;
         yield return null;

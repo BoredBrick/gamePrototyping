@@ -18,9 +18,10 @@ public class PlayerMove : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         colliderBox = gameObject.GetComponent<BoxCollider>();
     }
+
     void Update()
     {
-        // Calculate movement direction based on input
+        //Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Vector3 movement = Vector3.zero;
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
@@ -39,13 +40,9 @@ public class PlayerMove : MonoBehaviour
             movement += Vector3.right;
         }
 
-        // Normalize the movement vector to ensure consistent speed diagonally
         movement.Normalize();
 
-        // Adjust movement speed if Shift key is pressed
-        float currentMoveSpeed = Input.GetKey(KeyCode.LeftShift) ? moveSpeed * 0.5f : moveSpeed;
-
-        // Translate the player's position based on movement direction and speed
+        float currentMoveSpeed = Input.GetKey(KeyCode.LeftShift) || Input.GetAxis("RightTrigger") > 0 ? moveSpeed * 0.5f : moveSpeed;
         transform.Translate(currentMoveSpeed * Time.deltaTime * movement);
 
         if (gameObject.transform.position.x > LevelBoundary.rightBoundary)
@@ -60,9 +57,9 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if ((Input.GetButton("Jump") || Input.GetKey(KeyCode.Space)) && jumpCooldownFinished)
         {
-            if (gameObject.transform.position.y <= 1.26 && jumpCooldownFinished)
+            if (gameObject.transform.position.y <= 1.26)
             {
                 jumpCooldownFinished = false;
                 animator.SetTrigger("jump");
@@ -73,7 +70,6 @@ public class PlayerMove : MonoBehaviour
                 StartCoroutine(JumpCooldown());
             }
         }
-
     }
 
     IEnumerator ChangeColliderAfterAnimation(float waitTime)
