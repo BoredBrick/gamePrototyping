@@ -3508,6 +3508,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &773796394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 975360611651817751, guid: eb12ce76f80d9a84287efe43a96f511e, type: 3}
+  m_PrefabInstance: {fileID: 1242849652}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &813531000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4706,6 +4711,10 @@ PrefabInstance:
       propertyPath: timerText
       value: 
       objectReference: {fileID: 659856192}
+    - target: {fileID: 1912279942136556965, guid: 70d7aacbb38c4f24898ee8054ad61008, type: 3}
+      propertyPath: pauseScreen
+      value: 
+      objectReference: {fileID: 773796394}
     - target: {fileID: 2130573139242916953, guid: 70d7aacbb38c4f24898ee8054ad61008, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
