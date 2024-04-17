@@ -8,15 +8,13 @@ public class PlayerMove : MonoBehaviour
     public float sideSpeed = 4;
     public static float jumpForce = Constants.defaultJumpForce;
     public Animator animator;
-    private BoxCollider colliderBox;
-    private bool jumpCooldownFinished = true;
+    public Transform modelToRotate; 
 
     private void Awake()
     {
         moveSpeed = Constants.defaultMoveSpeed;
         jumpForce = Constants.defaultJumpForce;
         animator = GetComponentInChildren<Animator>();
-        colliderBox = gameObject.GetComponent<BoxCollider>();
     }
 
     void Update()
@@ -42,9 +40,35 @@ public class PlayerMove : MonoBehaviour
 
         movement.Normalize();
 
-        float currentMoveSpeed = Input.GetKey(KeyCode.LeftShift) || Input.GetAxis("RightTrigger") > 0 ? moveSpeed * 0.5f : moveSpeed;
+        float currentMoveSpeed;
+
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetAxis("RightTrigger") > 0)
+        {
+            Timer.doubleSpeed = true;
+            currentMoveSpeed = moveSpeed * 0.5f;
+        } else
+        {
+            Timer.doubleSpeed = false;
+            currentMoveSpeed = moveSpeed;
+        }
+
         transform.Translate(currentMoveSpeed * Time.deltaTime * movement);
 
+        CheckBoundary();
+        RotateModel(movement);
+    }
+
+    private void RotateModel(Vector3 movement)
+    {
+        if (movement != Vector3.zero && modelToRotate != null)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(-movement, Vector3.up);
+            modelToRotate.rotation = Quaternion.Lerp(modelToRotate.rotation, targetRotation, Time.deltaTime * 10.0f);
+        }
+    }
+
+    private void CheckBoundary()
+    {
         if (gameObject.transform.position.x > LevelBoundary.rightBoundary)
         {
             transform.position = new Vector3(LevelBoundary.rightBoundary, transform.position.y, transform.position.z);
@@ -57,35 +81,14 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((Input.GetButton("Jump") || Input.GetKey(KeyCode.Space)) && jumpCooldownFinished)
+        if ((Input.GetButton("Jump") || Input.GetKey(KeyCode.Space)))
         {
-            if (gameObject.transform.position.y <= 1.26)
+            if (gameObject.transform.position.y <= 1)
             {
-                jumpCooldownFinished = false;
                 animator.SetTrigger("jump");
                 gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                colliderBox.center = new Vector3(colliderBox.center.x, 0.44f, colliderBox.center.z);
-                colliderBox.size = new Vector3(colliderBox.size.x, 0.7f, colliderBox.size.z);
-                StartCoroutine(ChangeColliderAfterAnimation(0.52f));
-                StartCoroutine(JumpCooldown());
+
             }
         }
-    }
-
-    IEnumerator ChangeColliderAfterAnimation(float waitTime)
-    {
-        while (waitTime >= 0.0f)
-        {
-            waitTime -= Time.deltaTime;
-            yield return null;
-        }
-        colliderBox.center = new Vector3(colliderBox.center.x, 0.03274205f, colliderBox.center.z);
-        colliderBox.size = new Vector3(colliderBox.size.x, 1.065485f, colliderBox.size.z);
-    }
-
-    IEnumerator JumpCooldown()
-    {
-        yield return new WaitForSecondsRealtime(1);
-        jumpCooldownFinished = true;
     }
 }

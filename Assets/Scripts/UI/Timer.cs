@@ -1,13 +1,12 @@
 using TMPro;
-using TMPro.EditorUtilities;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
     public float totalTime = 120f; // Total time in seconds
     public TMP_Text timerText;
     private float remainingTime; // Remaining time in seconds
+    public static bool doubleSpeed = false;
 
     void Start()
     {
@@ -16,7 +15,15 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        remainingTime -= Time.deltaTime;
+        // If double speed is active, reduce remaining time by double the speed
+        if (doubleSpeed)
+        {
+            remainingTime -= 2 * Time.deltaTime;
+        }
+        else
+        {
+            remainingTime -= Time.deltaTime;
+        }
 
         // Ensure remaining time does not go below zero
         if (remainingTime < 0)
