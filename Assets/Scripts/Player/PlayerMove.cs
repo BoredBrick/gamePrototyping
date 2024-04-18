@@ -42,20 +42,29 @@ public class PlayerMove : MonoBehaviour
 
         float currentMoveSpeed;
 
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetAxis("RightTrigger") > 0)
-        {
-            Timer.doubleSpeed = true;
-            currentMoveSpeed = moveSpeed * 0.5f;
-        } else
-        {
-            Timer.doubleSpeed = false;
-            currentMoveSpeed = moveSpeed;
-        }
+        currentMoveSpeed = CalcCurrentMoveSpeed();
 
         transform.Translate(currentMoveSpeed * Time.deltaTime * movement);
 
         CheckBoundary();
         RotateModel(movement);
+    }
+
+    private static float CalcCurrentMoveSpeed()
+    {
+        float currentMoveSpeed;
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetAxis("RightTrigger") > 0)
+        {
+            Timer.doubleSpeed = true;
+            currentMoveSpeed = moveSpeed * 0.5f;
+        }
+        else
+        {
+            Timer.doubleSpeed = false;
+            currentMoveSpeed = moveSpeed;
+        }
+
+        return currentMoveSpeed;
     }
 
     private void RotateModel(Vector3 movement)
