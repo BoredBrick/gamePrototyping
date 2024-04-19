@@ -17,8 +17,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        Vector3 movement = new(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        //Vector3 movement = Vector3.zero;
+        Vector3 movement = Vector3.zero;
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             movement += Vector3.forward;
@@ -41,9 +40,13 @@ public class PlayerMove : MonoBehaviour
         float currentMoveSpeed;
 
         currentMoveSpeed = CalcCurrentMoveSpeed();
+        if (movement == Vector3.zero)
+        {
+            transform.Translate(movement);
+            movement = new(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        }
 
         transform.Translate(currentMoveSpeed * Time.deltaTime * movement);
-
         CheckBoundary();
         RotateModel(movement);
     }
