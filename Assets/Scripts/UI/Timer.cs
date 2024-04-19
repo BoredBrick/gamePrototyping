@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
         // If double speed is active, reduce remaining time by double the speed
         if (doubleSpeed)
         {
-            remainingTime -= 2 * Time.deltaTime;
+            remainingTime -= 6 * Time.deltaTime;
         }
         else
         {
@@ -41,11 +41,15 @@ public class Timer : MonoBehaviour
 
         if (minutes > 0)
         {
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            //timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            // display miliseconds
+            timerText.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, (remainingTime * 100) % 100);
         }
         else
         {
-            timerText.text = string.Format("{0:00}", seconds);
+            //timerText.text = string.Format("{0:00}", seconds);
+            // display miliseconds
+            timerText.text = string.Format("{0:00}:{1:00}", seconds, (remainingTime * 100) % 100);
         }
     }
 }

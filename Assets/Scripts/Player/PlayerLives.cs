@@ -22,7 +22,7 @@ public class PlayerLives : MonoBehaviour
     public static void RemoveLife()
     {
         lives--;
-        displayLives = (lives < 0) ? 0 : displayLives - 1;
+        displayLives = (lives <= 0) ? 0 : displayLives - 1;
     }
 
     private void Update()

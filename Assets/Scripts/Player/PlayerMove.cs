@@ -1,12 +1,10 @@
 using Assets.Scripts;
-using System.Collections;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    public static float moveSpeed = Constants.defaultMoveSpeed;
-    public float sideSpeed = 4;
-    public static float jumpForce = Constants.defaultJumpForce;
+    public static float moveSpeed;
+    public static float jumpForce;
     public Animator animator;
     public Transform modelToRotate; 
 
@@ -19,8 +17,8 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        //Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        Vector3 movement = Vector3.zero;
+        Vector3 movement = new(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        //Vector3 movement = Vector3.zero;
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             movement += Vector3.forward;
