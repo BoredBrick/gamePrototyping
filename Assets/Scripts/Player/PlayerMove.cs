@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
     public static float jumpForce;
     public Animator animator;
     public Transform modelToRotate; 
+    public static bool slowWalk = false;
 
     private void Awake()
     {
@@ -57,6 +58,10 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetAxis("RightTrigger") > 0)
         {
             Timer.doubleSpeed = true;
+            currentMoveSpeed = moveSpeed * 0.5f;
+        }
+        else if (slowWalk)
+        {
             currentMoveSpeed = moveSpeed * 0.5f;
         }
         else
