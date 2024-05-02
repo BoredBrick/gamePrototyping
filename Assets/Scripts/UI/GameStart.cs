@@ -7,12 +7,7 @@ public class GameStart : MonoBehaviour
     public CameraFade cameraFade;
     void Start()
     {
+        Time.timeScale = 1;
         cameraFade.FadeOut();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
