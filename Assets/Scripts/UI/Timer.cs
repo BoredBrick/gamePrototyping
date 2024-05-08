@@ -5,7 +5,7 @@ public class Timer : MonoBehaviour
 {
     public float totalTime = 120f; // Total time in seconds
     public TMP_Text timerText;
-    private float remainingTime; // Remaining time in seconds
+    public static float remainingTime; // Remaining time in seconds
     public static bool doubleSpeed = false;
 
     void Start()
