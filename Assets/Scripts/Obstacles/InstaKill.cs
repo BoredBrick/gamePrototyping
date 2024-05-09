@@ -8,7 +8,7 @@ public class InstaKill : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerLives.lives = -1;
+            Timer.remainingTime = 0;
         }
     }
 }
