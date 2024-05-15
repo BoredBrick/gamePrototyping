@@ -6,9 +6,9 @@ public class PlayerMove : MonoBehaviour
     public static float moveSpeed;
     public static float jumpForce;
     public Animator animator;
-    public Transform modelToRotate; 
+    public Transform modelToRotate;
     public static bool slowWalk = false;
-
+    private int biggestZ;
     private void Awake()
     {
         moveSpeed = Constants.defaultMoveSpeed;
@@ -19,23 +19,6 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         Vector3 movement = Vector3.zero;
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            movement += Vector3.forward;
-        }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            movement += Vector3.back;
-        }
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            movement += Vector3.left;
-        }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            movement += Vector3.right;
-        }
-
         movement.Normalize();
 
         float currentMoveSpeed;
@@ -45,6 +28,11 @@ public class PlayerMove : MonoBehaviour
         {
             transform.Translate(movement);
             movement = new(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        }
+
+        if (movement.z < 0)
+        {
+            movement.z = 0;
         }
 
         transform.Translate(currentMoveSpeed * Time.deltaTime * movement);
@@ -98,7 +86,7 @@ public class PlayerMove : MonoBehaviour
     {
         if ((Input.GetButton("Jump") || Input.GetKey(KeyCode.Space)))
         {
-            if (gameObject.transform.position.y <= 1)
+            if (gameObject.transform.position.y <= 1 && gameObject.transform.position.y >= 0.6)
             {
                 animator.SetTrigger("jump");
                 gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);

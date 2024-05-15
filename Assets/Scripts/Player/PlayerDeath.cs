@@ -20,7 +20,7 @@ public class PlayerDeath : MonoBehaviour
 
     IEnumerator FadeAndLoadScene()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.1f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

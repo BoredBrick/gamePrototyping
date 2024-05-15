@@ -6,11 +6,13 @@ public class TreeRotate : MonoBehaviour
     public GameObject objectToRotate; // Reference to the GameObject to rotate
     private bool rotated = false; // Boolean to prevent continuous rotation
     private Quaternion targetRotation; // Target rotation for smooth lerp
+    public Animator Animator;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !rotated)
         {
+            Animator.SetTrigger("slap");
             if (rotateToLeft)
             {
                 // Calculate the target rotation 90 degrees to the left
@@ -38,7 +40,7 @@ public class TreeRotate : MonoBehaviour
             {
                 // Snap to the target rotation
                 objectToRotate.transform.rotation = targetRotation;
-            }
+            } 
         }
     }
 }
