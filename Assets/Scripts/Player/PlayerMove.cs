@@ -8,7 +8,6 @@ public class PlayerMove : MonoBehaviour
     public Animator animator;
     public Transform modelToRotate;
     public static bool slowWalk = false;
-    private int biggestZ;
     private void Awake()
     {
         moveSpeed = Constants.defaultMoveSpeed;
@@ -30,10 +29,7 @@ public class PlayerMove : MonoBehaviour
             movement = new(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         }
 
-        if (movement.z < 0)
-        {
-            movement.z = 0;
-        }
+        movement.z = 1;
 
         transform.Translate(currentMoveSpeed * Time.deltaTime * movement);
         CheckBoundary();
@@ -63,10 +59,15 @@ public class PlayerMove : MonoBehaviour
 
     private void RotateModel(Vector3 movement)
     {
-        if (movement != Vector3.zero && modelToRotate != null)
+        if (movement.z > 0 && movement.y == 0 && movement.x == 0) // Check if movement is forward
         {
             Quaternion targetRotation = Quaternion.LookRotation(-movement, Vector3.up);
-            modelToRotate.rotation = Quaternion.Lerp(modelToRotate.rotation, targetRotation, Time.deltaTime * 10.0f);
+            modelToRotate.rotation = Quaternion.Lerp(modelToRotate.rotation, targetRotation, Time.deltaTime * 30.0f);
+        }
+        else if (movement != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(-movement, Vector3.up);
+            modelToRotate.rotation = Quaternion.Lerp(modelToRotate.rotation, targetRotation, Time.deltaTime * 12.0f); // Smooth rotation
         }
     }
 
