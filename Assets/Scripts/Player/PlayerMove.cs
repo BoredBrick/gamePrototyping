@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -43,6 +44,9 @@ public class PlayerMove : MonoBehaviour
         {
             Timer.doubleSpeed = true;
             currentMoveSpeed = moveSpeed * 0.5f;
+            float maxFOV = 82;
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, maxFOV, 5f * Time.deltaTime); ;
+
         }
         else if (slowWalk)
         {
@@ -52,6 +56,8 @@ public class PlayerMove : MonoBehaviour
         {
             Timer.doubleSpeed = false;
             currentMoveSpeed = moveSpeed;
+            float maxFOV = 97;
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, maxFOV, 3.5f * Time.deltaTime); ;
         }
 
         return currentMoveSpeed;
