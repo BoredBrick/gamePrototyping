@@ -9,6 +9,8 @@ public class PlayerMove : MonoBehaviour
     public Animator animator;
     public Transform modelToRotate;
     public static bool slowWalk = false;
+    bool releasedJump = true;
+
     private void Awake()
     {
         moveSpeed = Constants.defaultMoveSpeed;
@@ -32,32 +34,37 @@ public class PlayerMove : MonoBehaviour
 
         movement.z = 1;
 
-        transform.Translate(currentMoveSpeed * Time.deltaTime * movement);
+         transform.Translate(currentMoveSpeed * Time.deltaTime * movement);
         CheckBoundary();
         RotateModel(movement);
     }
 
-    private static float CalcCurrentMoveSpeed()
+    private float CalcCurrentMoveSpeed()
     {
         float currentMoveSpeed;
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetAxis("RightTrigger") > 0)
         {
+            animator.SetBool("isWalking", true);
             Timer.doubleSpeed = true;
             currentMoveSpeed = moveSpeed * 0.5f;
             float maxFOV = 82;
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, maxFOV, 5f * Time.deltaTime); ;
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, maxFOV, 5f * Time.deltaTime);
 
         }
         else if (slowWalk)
         {
             currentMoveSpeed = moveSpeed * 0.5f;
+            animator.SetBool("isWalking", true);
+
         }
         else
         {
+            animator.SetBool("isWalking", false);
             Timer.doubleSpeed = false;
             currentMoveSpeed = moveSpeed;
             float maxFOV = 97;
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, maxFOV, 3.5f * Time.deltaTime); ;
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, maxFOV, 3.5f * Time.deltaTime);
+
         }
 
         return currentMoveSpeed;
@@ -93,12 +100,16 @@ public class PlayerMove : MonoBehaviour
     {
         if ((Input.GetButton("Jump") || Input.GetKey(KeyCode.Space)))
         {
-            if (gameObject.transform.position.y <= 1 && gameObject.transform.position.y >= 0.6)
+            if (gameObject.transform.position.y <= 0.96 && gameObject.transform.position.y >= 0.8 && releasedJump)
             {
+                releasedJump = false;
                 animator.SetTrigger("jump");
                 gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
             }
+        } else
+        {
+            releasedJump = true;
         }
     }
 }
