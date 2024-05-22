@@ -100,10 +100,10 @@ public class PlayerMove : MonoBehaviour
     {
         if ((Input.GetButton("Jump") || Input.GetKey(KeyCode.Space)))
         {
-            if (gameObject.transform.position.y <= 0.96 && gameObject.transform.position.y >= 0.8 && releasedJump)
+            if (gameObject.transform.position.y <= 0.98 && gameObject.transform.position.y >= 0.8)
             {
                 releasedJump = false;
-                animator.SetTrigger("jump");
+                animator.Play("jump");
                 gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
             }
