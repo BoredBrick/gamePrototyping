@@ -10,6 +10,7 @@ public class HitPlayer : MonoBehaviour
         {
             {
                 Timer.remainingTime -= 5;
+                Timer.flash = true;
             }
         }
     }
