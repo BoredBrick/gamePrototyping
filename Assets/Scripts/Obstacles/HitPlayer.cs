@@ -19,10 +19,18 @@ public class HitPlayer : MonoBehaviour
         {
             {
                 Timer.remainingTime -= 5;
-                //Instantiate(Sparks, collision.transform.position, Quaternion.identity);
                 //audioSource.PlayOneShot(audio[Random.Range(0,audio.Length)]);
                 Timer.flash = true;
+                StartCoroutine(SlowWalk());
             }
         }
+    }
+
+    //create coroutine that will set PlayerMove.slowWalk to true for 5 seconds
+    IEnumerator SlowWalk()
+    {
+        PlayerMove.slowWalk = true;
+        yield return new WaitForSeconds(1.5f);
+        PlayerMove.slowWalk = false;
     }
 }
