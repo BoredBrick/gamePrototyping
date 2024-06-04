@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 7443310960019411949}
   - component: {fileID: 2826716024664612553}
   - component: {fileID: 8332801086666256424}
-  - component: {fileID: 4119271908874782649}
   - component: {fileID: 468288815241103007}
   - component: {fileID: 1262474011832320272}
   - component: {fileID: 484599232838708451}
@@ -176,7 +175,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5170769047991523836}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dcec1561382ea5f4d912c33519d27c1d, type: 3}
   m_Name: 
@@ -200,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUps:
   - {fileID: 6157547908767675212}
-  - {fileID: 3675513522336492480}
+  - {fileID: 0}
   - {fileID: 7443310960019411949}
   - {fileID: 2826716024664612553}
   activePickUps: []
@@ -272,20 +271,6 @@ MonoBehaviour:
   windForce: 43
   applyDuration: 5
   applyInterval: 2
---- !u!114 &4119271908874782649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5170769047991523836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 193b8646baab6df4489e8b1a2a9ae3bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  iceFriction: 0.1
-  iceSpeedMultiplier: 2
 --- !u!114 &468288815241103007
 MonoBehaviour:
   m_ObjectHideFlags: 0
