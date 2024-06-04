@@ -13584,6 +13584,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8138254156586153671, guid: faf56b483ad2ed64dbacd707b2a820fc, type: 3}
+      propertyPath: cameraFade
+      value: 
+      objectReference: {fileID: 856736046}
+    - target: {fileID: 8138254156586153671, guid: faf56b483ad2ed64dbacd707b2a820fc, type: 3}
+      propertyPath: walk.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138254156586153671, guid: faf56b483ad2ed64dbacd707b2a820fc, type: 3}
+      propertyPath: walk.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 61afdaf7a03548b42b81f28a8a40aa07, type: 3}
+    - target: {fileID: 8138254156586153671, guid: faf56b483ad2ed64dbacd707b2a820fc, type: 3}
+      propertyPath: walk.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 99281dbeaf988dd4f855d1c81aa15bbd, type: 3}
+    - target: {fileID: 8138254156586153671, guid: faf56b483ad2ed64dbacd707b2a820fc, type: 3}
+      propertyPath: walk.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: a84a18c706461af4a885aaef8ec7985a, type: 3}
+    - target: {fileID: 8138254156586153671, guid: faf56b483ad2ed64dbacd707b2a820fc, type: 3}
+      propertyPath: walk.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0982861790894c243a8691d87036255c, type: 3}
+    - target: {fileID: 8138254156586153671, guid: faf56b483ad2ed64dbacd707b2a820fc, type: 3}
+      propertyPath: walk.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 71b05debebab3b34e9c2a40d8f59ba3f, type: 3}
+    - target: {fileID: 8138254156586153671, guid: faf56b483ad2ed64dbacd707b2a820fc, type: 3}
+      propertyPath: walk.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6900585deb806d34a87ac305d7295cbf, type: 3}
+    - target: {fileID: 8138254156586153671, guid: faf56b483ad2ed64dbacd707b2a820fc, type: 3}
+      propertyPath: walk.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 03fe91114d389c64fb3ad31a50e2af2e, type: 3}
+    - target: {fileID: 8138254156586153671, guid: faf56b483ad2ed64dbacd707b2a820fc, type: 3}
+      propertyPath: walk.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: e64cea4c254c67045b99cfae59834789, type: 3}
+    - target: {fileID: 8138254156586153671, guid: faf56b483ad2ed64dbacd707b2a820fc, type: 3}
+      propertyPath: walk.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d033a3a015d4f948a8ff4ddd6b7fc3a, type: 3}
+    - target: {fileID: 8138254156586153671, guid: faf56b483ad2ed64dbacd707b2a820fc, type: 3}
+      propertyPath: walk.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: ceccf7435779acc4fb2c2912f56e8556, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

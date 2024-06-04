@@ -10,13 +10,23 @@ public class PlayerMove : MonoBehaviour
     public Transform modelToRotate;
     public static bool slowWalk = false;
     bool releasedJump = true;
+    AudioSource audioSource;
+    public  AudioClip jump;
+    public AudioClip land;
+    public AudioClip[] walk;
+    private float stepTimer;
+    private float stepInterval;
+    public CameraFade cameraFade;
+    bool startedFade = false;
 
     private void Awake()
     {
         moveSpeed = Constants.defaultMoveSpeed;
         jumpForce = Constants.defaultJumpForce;
         animator = GetComponentInChildren<Animator>();
-    }
+        audioSource = GameObject.FindGameObjectWithTag("Scripts").GetComponent<AudioSource>();
+
+}
 
     void Update()
     {
@@ -34,9 +44,31 @@ public class PlayerMove : MonoBehaviour
 
         movement.z = 1;
 
-         transform.Translate(currentMoveSpeed * Time.deltaTime * movement);
+        transform.Translate(currentMoveSpeed * Time.deltaTime * movement);
         CheckBoundary();
         RotateModel(movement);
+
+        if (movement != Vector3.zero)
+        {
+            stepTimer += Time.deltaTime;
+
+            if (stepTimer >= stepInterval && gameObject.transform.position.y >= 0.8 && gameObject.transform.position.y <=  0.96)
+            {
+                audioSource.PlayOneShot(walk[Random.Range(0,walk.Length)]);
+                stepTimer = 0f;
+            }
+        }
+        else
+        {
+            stepTimer = 0f; // Reset the timer when the player stops moving
+        }
+
+        if (gameObject.transform.position.y <= 0 && !startedFade)
+        {
+            startedFade = true;
+            cameraFade.FadeIn();
+        }
+        
     }
 
     private float CalcCurrentMoveSpeed()
@@ -47,24 +79,26 @@ public class PlayerMove : MonoBehaviour
             animator.SetBool("isWalking", true);
             Timer.doubleSpeed = true;
             currentMoveSpeed = moveSpeed * 0.5f;
+            stepInterval = 0.35f; // Example interval adjustment for running
             float maxFOV = 82;
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, maxFOV, 5f * Time.deltaTime);
-
         }
         else if (slowWalk)
         {
             currentMoveSpeed = moveSpeed * 0.5f;
             animator.SetBool("isWalking", true);
-
+            stepInterval = 0.35f; // Example interval adjustment for walking
+            float maxFOV = 82;
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, maxFOV, 5f * Time.deltaTime);
         }
         else
         {
             animator.SetBool("isWalking", false);
             Timer.doubleSpeed = false;
             currentMoveSpeed = moveSpeed;
+            stepInterval = 0.25f; // Example interval adjustment for normal speed
             float maxFOV = 97;
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, maxFOV, 3.5f * Time.deltaTime);
-
         }
 
         return currentMoveSpeed;
@@ -102,14 +136,12 @@ public class PlayerMove : MonoBehaviour
         {
             if (gameObject.transform.position.y <= 0.98 && gameObject.transform.position.y >= 0.8)
             {
-                releasedJump = false;
+                stepTimer = 0f;
+                audioSource.PlayOneShot(jump);
                 animator.Play("jump");
                 gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
             }
-        } else
-        {
-            releasedJump = true;
-        }
+        } 
     }
 }

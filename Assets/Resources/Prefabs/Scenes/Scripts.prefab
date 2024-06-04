@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 468288815241103007}
   - component: {fileID: 1262474011832320272}
   - component: {fileID: 484599232838708451}
+  - component: {fileID: 5852647173758123683}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Scripts
@@ -284,6 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraFade: {fileID: 1262474011832320272}
+  deathsound: {fileID: 8300000, guid: f6a17862e081c734cb4cdbb07273f7ba, type: 3}
 --- !u!114 &1262474011832320272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,3 +349,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalTime: 120
   timerText: {fileID: 0}
+  flashDuration: 0.6
+  fadeDuration: 0.3
+--- !u!114 &5852647173758123683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5170769047991523836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66e9d80f9b129942802756a0f3a156b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio:
+  - {fileID: 8300000, guid: b65e05649ccb8f54984d8a3977f9445b, type: 3}
+  - {fileID: 8300000, guid: e19c1de7eded1ed45a6ec1a6b640be7b, type: 3}
+  - {fileID: 8300000, guid: 4ebddd219a6f0e84db627ba5c0580487, type: 3}
+  - {fileID: 8300000, guid: 7a874b6a45148a044b038ad55f6fc68a, type: 3}
+  - {fileID: 8300000, guid: d11faf5e5cb2ee747b799b95fae617da, type: 3}

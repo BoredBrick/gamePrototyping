@@ -122,8 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374ec789863b95b44aed0b32d1f0b87b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sparks: {fileID: 0}
-  audio: []
 --- !u!114 &2930288254869855403
 MonoBehaviour:
   m_ObjectHideFlags: 0
