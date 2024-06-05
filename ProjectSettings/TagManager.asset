@@ -8,6 +8,7 @@ TagManager:
   - FallingTree
   - Scripts
   - tree
+  - Timer
   layers:
   - Default
   - TransparentFX

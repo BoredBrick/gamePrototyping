@@ -14,6 +14,7 @@ public class Timer : MonoBehaviour
     public float fadeDuration = 0.3f;
     public static bool flash = false;
     bool flashActive = false;
+    public static bool isPaused = false;
     void Start()
     {
         remainingTime = totalTime;
@@ -22,6 +23,10 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        if (isPaused)
+        {
+            return;
+        }
         // If double speed is active, reduce remaining time by double the speed
         if (doubleSpeed)
         {

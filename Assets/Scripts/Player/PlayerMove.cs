@@ -18,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     private float stepInterval;
     public CameraFade cameraFade;
     bool startedFade = false;
+    public static bool isMoving = true;
 
     private void Awake()
     {
@@ -30,6 +31,11 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        if(!isMoving)
+        {
+            return;
+        }
+
         Vector3 movement = Vector3.zero;
         movement.Normalize();
 

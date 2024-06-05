@@ -8,6 +8,8 @@ public class GameStart : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
+        PlayerMove.isMoving = true;
+        Timer.isPaused = false;
         cameraFade.FadeOut();
     }
 }
