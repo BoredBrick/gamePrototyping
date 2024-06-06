@@ -10,7 +10,7 @@ public class NextLevelTrigger : MonoBehaviour
 
     private void Awake()
     {
-        AudioSource = GetComponent<AudioSource>();
+        AudioSource = GameObject.FindGameObjectWithTag("Scripts").GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
