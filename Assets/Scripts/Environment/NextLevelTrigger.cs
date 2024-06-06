@@ -6,6 +6,13 @@ public class NextLevelTrigger : MonoBehaviour
 {
     public CameraFade cameraFade;
     public GameObject afterLevelScreen;
+    AudioSource AudioSource;
+
+    private void Awake()
+    {
+        AudioSource = GetComponent<AudioSource>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -19,6 +26,7 @@ public class NextLevelTrigger : MonoBehaviour
     IEnumerator FadeAndNextLevel()
     {
         cameraFade.FadeIn();
+        AudioSource.volume = 0;
         yield return new WaitForSeconds(1.5f);
         GameObject.FindGameObjectWithTag("Timer").SetActive(false);
         PlayerMove.isMoving = false;

@@ -29,6 +29,9 @@ public class PlayerDeath : MonoBehaviour
 
     IEnumerator FadeAndLoadScene()
     {
+        cameraFade.FadeIn();
+        PlayerMove.isMoving = false;
+        Timer.isPaused = true;
         yield return new WaitForSeconds(2.3f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
