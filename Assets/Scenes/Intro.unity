@@ -669,11 +669,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slides:
+  - {fileID: 21300000, guid: 96b8a1678f204c54c9f179a9a0f98638, type: 3}
   - {fileID: 21300000, guid: 5e11d2eafaca6884ab3ffaf093278bb3, type: 3}
   - {fileID: 21300000, guid: 9caf35b8846510148a6f33eb17baed05, type: 3}
   - {fileID: 21300000, guid: 1911fdee09d6754469806e799af2f3de, type: 3}
   - {fileID: 21300000, guid: 25e39138ce49344419dc38b14891d491, type: 3}
   - {fileID: 21300000, guid: dbba0b14900fe3a4689ecacde696e2d5, type: 3}
+  - {fileID: 21300000, guid: fa7b53c5f859f2947a0f558539253386, type: 3}
+  - {fileID: 21300000, guid: 973efd62621e1db4ea83ae2a5fdc949f, type: 3}
+  - {fileID: 21300000, guid: dc2b5234625ed9949a4b633926e30d8f, type: 3}
+  - {fileID: 21300000, guid: df664cbfea7a6364482eb6f1d9e09b83, type: 3}
+  - {fileID: 21300000, guid: f3b2efe79e0c521468c6d15ff467d4a8, type: 3}
+  - {fileID: 21300000, guid: 6240cb6c9b8a217458d1134fb0e27676, type: 3}
+  - {fileID: 21300000, guid: 65296201bdc7c614a95b3c4bded2ce21, type: 3}
+  - {fileID: 21300000, guid: 2bd390cebc6f6ca499203b351c0f4ee1, type: 3}
+  - {fileID: 21300000, guid: 1205295e16d286d40a9dbff9adffccc9, type: 3}
+  - {fileID: 21300000, guid: 8f8ad8c7c8705a240b36d01c3e05abd6, type: 3}
   cameraFade: {fileID: 2090560861}
 --- !u!114 &2090560861
 MonoBehaviour:

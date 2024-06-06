@@ -16,7 +16,14 @@ public class IntroSlides : MonoBehaviour
             var ob = GameObject.Find("SlidePicture"); // Find the GameObject with the name "SlidePicture
             ob.GetComponent<Image>().sprite = slides[i]; // Set the sprite of the Image component on the GameObject to the current slide
             cameraFade.FadeOut();
+            if(i == 0)
+            {
+                yield return new WaitForSeconds(7);
+            } else
+            {
             yield return new WaitForSeconds(3);
+
+            }
             cameraFade.FadeIn();
             yield return new WaitForSeconds(0.5f);
         }
