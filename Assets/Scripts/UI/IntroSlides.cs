@@ -33,7 +33,7 @@ public class IntroSlides : MonoBehaviour
     //start another level
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
     // Update is called once per frame
     void Update()

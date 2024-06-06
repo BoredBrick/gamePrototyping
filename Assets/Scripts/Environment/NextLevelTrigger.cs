@@ -37,7 +37,7 @@ public class NextLevelTrigger : MonoBehaviour
         yield return new WaitForSeconds(9);
         cameraFade.FadeIn();
         yield return new WaitForSeconds(1.5f);
-        if (SceneManager.GetActiveScene().buildIndex == 3)
+        if (SceneManager.GetActiveScene().buildIndex == 4)
         {
             SceneManager.LoadScene(0);
         }
