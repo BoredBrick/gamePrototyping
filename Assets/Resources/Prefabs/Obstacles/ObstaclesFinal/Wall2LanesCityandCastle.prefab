@@ -64,6 +64,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall2LanesCityandCastle
       objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 6dcea485e9b4b5342930fdb44e5c3a01, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 6dcea485e9b4b5342930fdb44e5c3a01, type: 3}
+      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 6dcea485e9b4b5342930fdb44e5c3a01, type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
