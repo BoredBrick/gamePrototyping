@@ -1,6 +1,4 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,7 +14,7 @@ public class IntroSlides : MonoBehaviour
         for (int i = 0; i < slides.Length; i++)
         {
             var ob = GameObject.Find("SlidePicture"); // Find the GameObject with the name "SlidePicture
-            ob.GetComponent<UnityEngine.UI.Image>().sprite = slides[i]; // Set the sprite of the Image component on the GameObject to the current slide
+            ob.GetComponent<Image>().sprite = slides[i]; // Set the sprite of the Image component on the GameObject to the current slide
             cameraFade.FadeOut();
             yield return new WaitForSeconds(3);
             cameraFade.FadeIn();
